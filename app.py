@@ -6,6 +6,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
+# Descarga los recursos necesarios (solo la primera vez)
 nltk.download('stopwords')
 nltk.download('wordnet')
 nltk.download('punkt')
@@ -13,8 +14,6 @@ nltk.download('punkt')
 # Cargar modelo y vectorizador
 logistic_model = joblib.load('model.pkl')
 tfidf_vectorizer = joblib.load('vectorizer.pkl')
-
-# Función de normalización
 
 
 def normalize_text(text):
@@ -28,7 +27,6 @@ def normalize_text(text):
     return ' '.join(words)
 
 
-# Interfaz de Streamlit
 st.header("🎬 Clasificador de Sentimientos de Reseñas 🎭")
 
 user_input = st.text_area("✍️ Escribe una reseña en inglés:")
