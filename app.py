@@ -6,29 +6,13 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
-# Verifica recursos de NLTK y descárgalos solo si faltan
-try:
-    stopwords.words('english')
-except LookupError:
-    nltk.download('stopwords')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('punkt')
 
-try:
-    WordNetLemmatizer()
-except LookupError:
-    nltk.download('wordnet')
-
-try:
-    word_tokenize("test")
-except LookupError:
-    nltk.download('punkt')
-
-# Cargar modelo y vectorizador con manejo de errores
-try:
-    logistic_model = joblib.load('model.pkl')
-    tfidf_vectorizer = joblib.load('vectorizer.pkl')
-except FileNotFoundError:
-    st.error("Error: No se encontró el archivo del modelo o vectorizador.")
-    st.stop()
+# Cargar modelo y vectorizador
+logistic_model = joblib.load('model.pkl')
+tfidf_vectorizer = joblib.load('vectorizer.pkl')
 
 # Función de normalización
 
